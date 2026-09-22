@@ -1,0 +1,564 @@
+import { useState } from "react";
+
+function App() {
+
+  // Helmet collection
+  const helmets = [
+    {
+      id: 1,
+      name: "Racing Helmet",
+      price: 2500,
+      image: "/images/racing.jpg"
+    },
+    {
+      id: 2,
+      name: "Full Face Helmet",
+      price: 3200,
+      image: "/images/fullface.jpg"
+    },
+    {
+      id: 3,
+      name: "Street Helmet",
+      price: 1800,
+      image: "/images/street.jpg"
+    },
+    {
+      id: 4,
+      name: "Sports Helmet",
+      price: 4000,
+      image: "/images/sports.jpg"
+    },
+    {
+      id: 5,
+      name: "Touring Helmet",
+      price: 3500,
+      image: "/images/touring.jpg"
+    },
+    {
+      id: 6,
+      name: "Modular Helmet",
+      price: 4500,
+      image: "/images/modular.jpg"
+    },
+    {
+      id: 7,
+      name: "Adventure Helmet",
+      price: 5000,
+      image: "/images/adventure.jpg"
+    },
+    {
+      id: 8,
+      name: "Classic Helmet",
+      price: 2200,
+      image: "/images/classic.jpg"
+    },
+    {
+      id: 9,
+      name: "Carbon Helmet",
+      price: 6500,
+      image: "/images/carbon.jpg"
+    },
+    {
+      id: 10,
+      name: "Urban Helmet",
+      price: 2000,
+      image: "/images/urban.jpg"
+    },
+    {
+      id: 11,
+      name: "Dual Visor Helmet",
+      price: 3000,
+      image: "/images/dualvisor.jpg"
+    },
+    {
+      id: 12,
+      name: "Premium Racing Helmet",
+      price: 7500,
+      image: "/images/premium.jpg"
+    }
+  ];
+
+
+  // Contact form
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    message: ""
+  });
+
+
+  // Handle input
+  const handleChange = (event) => {
+
+    setForm({
+      ...form,
+      [event.target.name]: event.target.value
+    });
+
+  };
+
+
+  // Submit contact form
+  const handleSubmit = (event) => {
+
+    event.preventDefault();
+
+    alert(
+      `Thank you ${form.name}! We will contact you soon.`
+    );
+
+    setForm({
+      name: "",
+      phone: "",
+      message: ""
+    });
+
+  };
+
+
+  // Add to cart
+  const addToCart = (helmet) => {
+
+    alert(
+      `${helmet.name} added to cart`
+    );
+
+  };
+
+
+  return (
+
+    <div style={styles.app}>
+
+      {/* ================= HEADER ================= */}
+
+      <header style={styles.header}>
+
+        <h1 style={styles.title}>
+          🏍️ Helmet Store
+        </h1>
+
+        <p style={styles.subtitle}>
+          Quality Helmets for Every Ride
+        </p>
+
+        <button
+          style={styles.shopButton}
+          onClick={() =>
+            window.scrollTo({
+              top: 450,
+              behavior: "smooth"
+            })
+          }
+        >
+          Shop Now
+        </button>
+
+      </header>
+
+
+      {/* ================= WELCOME ================= */}
+
+      <section style={styles.welcome}>
+
+        <h2>
+          Ride Safe. Ride Smart.
+        </h2>
+
+        <p>
+          Explore our collection of quality motorcycle
+          helmets designed for safety, comfort and style.
+        </p>
+
+      </section>
+
+
+      {/* ================= PRODUCTS ================= */}
+
+      <section>
+
+        <h2 style={styles.heading}>
+          Our Helmet Collection
+        </h2>
+
+        <p style={styles.collectionText}>
+          Choose from our wide range of motorcycle helmets.
+        </p>
+
+
+        <div style={styles.products}>
+
+          {helmets.map((helmet) => (
+
+            <div
+              style={styles.card}
+              key={helmet.id}
+            >
+
+              {/* Helmet Image */}
+
+              <img
+                src={helmet.image}
+                alt={helmet.name}
+                style={styles.image}
+              />
+
+
+              {/* Product Name */}
+
+              <h3 style={styles.productName}>
+                {helmet.name}
+              </h3>
+
+
+              {/* Price */}
+
+              <p style={styles.price}>
+                ₹{helmet.price}
+              </p>
+
+
+              {/* Description */}
+
+              <p style={styles.description}>
+                Quality motorcycle helmet with
+                comfortable design and reliable protection.
+              </p>
+
+
+              {/* Button */}
+
+              <button
+                style={styles.button}
+                onClick={() => addToCart(helmet)}
+              >
+                Add to Cart
+              </button>
+
+            </div>
+
+          ))}
+
+        </div>
+
+      </section>
+
+
+      {/* ================= CONTACT OWNER ================= */}
+
+      <section style={styles.contact}>
+
+        <h2>
+          Contact the Owner
+        </h2>
+
+        <p>
+          Have questions about our helmets?
+          Contact us directly.
+        </p>
+
+
+        {/* Owner Information */}
+
+        <div style={styles.owner}>
+
+          <p>
+            👤 <strong>Owner:</strong> Vimal
+          </p>
+
+          <p>
+            📞 <strong>Phone:</strong> +91 XXXXX XXXXX
+          </p>
+
+          <p>
+            📧 <strong>Email:</strong> helmetstore@example.com
+          </p>
+
+          <p>
+            📍 <strong>Location:</strong> Karur, Tamil Nadu
+          </p>
+
+        </div>
+
+
+        {/* Contact Form */}
+
+        <h3>
+          Send us a Message
+        </h3>
+
+
+        <form onSubmit={handleSubmit}>
+
+          <input
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            value={form.name}
+            onChange={handleChange}
+            required
+            style={styles.input}
+          />
+
+
+          <input
+            type="tel"
+            name="phone"
+            placeholder="Phone Number"
+            value={form.phone}
+            onChange={handleChange}
+            required
+            style={styles.input}
+          />
+
+
+          <textarea
+            name="message"
+            placeholder="Your Message"
+            value={form.message}
+            onChange={handleChange}
+            required
+            style={styles.textarea}
+          />
+
+
+          <button
+            type="submit"
+            style={styles.button}
+          >
+            Send Message
+          </button>
+
+        </form>
+
+      </section>
+
+
+      {/* ================= FOOTER ================= */}
+
+      <footer style={styles.footer}>
+
+        <h3>
+          🏍️ Helmet Store
+        </h3>
+
+        <p>
+          Quality Helmets • Safety • Comfort
+        </p>
+
+        <p>
+          © 2026 Helmet Store. All Rights Reserved.
+        </p>
+
+        <p>
+          React + Flask + MySQL + Kubernetes
+        </p>
+
+      </footer>
+
+    </div>
+
+  );
+
+}
+
+
+// =================================================
+// CSS
+// =================================================
+
+const styles = {
+
+  app: {
+    maxWidth: "1200px",
+    margin: "auto",
+    padding: "20px",
+    fontFamily: "Arial, sans-serif",
+    backgroundColor: "#f4f4f4",
+    minHeight: "100vh"
+  },
+
+
+  // Header
+
+  header: {
+    textAlign: "center",
+    padding: "60px 20px",
+    backgroundColor: "#111",
+    color: "white",
+    borderRadius: "15px",
+    marginBottom: "30px"
+  },
+
+
+  title: {
+    fontSize: "42px",
+    marginBottom: "10px"
+  },
+
+
+  subtitle: {
+    fontSize: "20px",
+    color: "#ddd"
+  },
+
+
+  shopButton: {
+    marginTop: "20px",
+    padding: "13px 30px",
+    backgroundColor: "white",
+    color: "#111",
+    border: "none",
+    borderRadius: "7px",
+    cursor: "pointer",
+    fontSize: "16px",
+    fontWeight: "bold"
+  },
+
+
+  // Welcome
+
+  welcome: {
+    textAlign: "center",
+    padding: "25px",
+    maxWidth: "800px",
+    margin: "auto"
+  },
+
+
+  // Products
+
+  heading: {
+    textAlign: "center",
+    marginTop: "35px",
+    fontSize: "30px"
+  },
+
+
+  collectionText: {
+    textAlign: "center",
+    color: "#666",
+    marginBottom: "25px"
+  },
+
+
+  products: {
+    display: "grid",
+    gridTemplateColumns:
+      "repeat(auto-fit, minmax(250px, 1fr))",
+    gap: "25px",
+    marginTop: "20px"
+  },
+
+
+  card: {
+    padding: "20px",
+    backgroundColor: "white",
+    borderRadius: "12px",
+    textAlign: "center",
+    boxShadow:
+      "0 4px 12px rgba(0,0,0,0.15)"
+  },
+
+
+  image: {
+    width: "100%",
+    height: "220px",
+    objectFit: "cover",
+    borderRadius: "10px"
+  },
+
+
+  productName: {
+    marginTop: "15px",
+    fontSize: "20px"
+  },
+
+
+  price: {
+    fontSize: "23px",
+    fontWeight: "bold",
+    margin: "10px"
+  },
+
+
+  description: {
+    color: "#666",
+    fontSize: "14px",
+    lineHeight: "1.5"
+  },
+
+
+  button: {
+    padding: "12px 25px",
+    backgroundColor: "#111",
+    color: "white",
+    border: "none",
+    borderRadius: "6px",
+    cursor: "pointer",
+    fontSize: "15px",
+    fontWeight: "bold"
+  },
+
+
+  // Contact
+
+  contact: {
+    marginTop: "70px",
+    padding: "35px",
+    backgroundColor: "white",
+    borderRadius: "12px"
+  },
+
+
+  owner: {
+    backgroundColor: "#f4f4f4",
+    padding: "20px",
+    borderRadius: "8px",
+    marginTop: "20px",
+    marginBottom: "30px"
+  },
+
+
+  input: {
+    display: "block",
+    width: "100%",
+    maxWidth: "500px",
+    padding: "13px",
+    marginBottom: "15px",
+    boxSizing: "border-box",
+    fontSize: "16px",
+    border: "1px solid #ccc",
+    borderRadius: "6px"
+  },
+
+
+  textarea: {
+    display: "block",
+    width: "100%",
+    maxWidth: "500px",
+    height: "130px",
+    padding: "13px",
+    marginBottom: "15px",
+    boxSizing: "border-box",
+    fontSize: "16px",
+    border: "1px solid #ccc",
+    borderRadius: "6px"
+  },
+
+
+  // Footer
+
+  footer: {
+    textAlign: "center",
+    marginTop: "60px",
+    padding: "30px",
+    backgroundColor: "#111",
+    color: "white",
+    borderRadius: "10px"
+  }
+
+};
+
+
+export default App;
